@@ -43,16 +43,12 @@ def includeme(config):
 
 
 def cli_gen_ticket():
-    try:
-        env = bootstrap(sys.argv[1])
-        secret = env['registry'].settings.get('lawn_secret')
-        if not secret:
-            print "No secret configured."
-            return
-        helper = AuthTktCookieHelper(secret, 'lawn')
-        cookie_value = helper.remember(env['request'], IDENTITY)[0][1]
-        assert cookie_value.startswith('lawn="')
-        print cookie_value.split(';')[0][6:-1]
-    except:
-        import pdb; pdb.post_mortem()
-
+    env = bootstrap(sys.argv[1])
+    secret = env['registry'].settings.get('lawn_secret')
+    if not secret:
+        print "No secret configured."
+        return
+    helper = AuthTktCookieHelper(secret, 'lawn')
+    cookie_value = helper.remember(env['request'], IDENTITY)[0][1]
+    assert cookie_value.startswith('lawn="')
+    print cookie_value.split(';')[0][6:-1]
