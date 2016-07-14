@@ -17,7 +17,7 @@ from sys import version
 
 from setuptools import setup, find_packages
 
-VERSION = '1.0'
+VERSION = '1.1'
 
 here = os.path.abspath(os.path.dirname(__file__))
 try:
@@ -27,7 +27,7 @@ except IOError:
     README = CHANGES = ''
 
 install_requires = [
-    'pyramid', # requires mako fix
+    'pyramid',
     ]
 tests_require = install_requires + ['coverage', 'nose']
 docs_require = install_requires + ['sphinx']
