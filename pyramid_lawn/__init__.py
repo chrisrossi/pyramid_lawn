@@ -50,5 +50,5 @@ def cli_gen_ticket():
         return
     helper = AuthTktCookieHelper(secret, 'lawn')
     cookie_value = helper.remember(env['request'], IDENTITY)[0][1]
-    assert cookie_value.startswith('lawn="')
-    print cookie_value.split(';')[0][6:-1]
+    assert cookie_value.startswith('lawn=')
+    print cookie_value.split(';')[0][5:].strip('"')
